@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+<h:head>
+</h:head>
+<h:body>
+	<p:growl id="growl" showDetail="true" sticky="true" />
+	<h:form>
+		<h:panelGrid columns="2">
+		Nome Produto:
+		<p:inputText value="#{produtosbean.produtos.nomeProduto}" />
+		Valor Produto:	
+		<p:inputText value="#{produtosbean.produtos.valorProduto}" />
+		CNPJ Fabricante:
+		<p:inputText value="#{produtosbean.fabricanteCnpj}"
+				id="fabricanteCnpj" />
+			<p:commandButton value="pesquisar"
+				action="#{produtosbean.buscarPorID()}" update="fabricanteNome msg">
+				<f:ajax event="click" execute="fabricanteCnpj" />
+			</p:commandButton>
+			
+			<h:outputText value="#{produtosbean.fabricantes.nomeFabricante}"
+				id="fabricanteNome" />
+		</h:panelGrid>
+
+		<p:commandButton action="#{produtosbean.salvarProduto()}"
+			value="Cadastrar" />
+	</h:form>
+</h:body>
+</html>
